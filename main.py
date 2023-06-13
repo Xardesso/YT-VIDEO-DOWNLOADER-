@@ -9,7 +9,6 @@ import subprocess
 
 
 def select_directory():
-    # Open directory selection dialog
     global path
 
     folder_path = QFileDialog.getExistingDirectory(None, 'Wybierz folder', '/')
@@ -25,7 +24,6 @@ def download():
     video_stream = video.streams.filter(res='720p').first()
     video_stream.download(filename=output_filename, output_path=destination_folder)
 
-    # Convert downloaded video to audio using ffmpeg
     audio_filename = os.path.splitext(output_filename)[0] + '.mp3'
     subprocess.call(['ffmpeg', '-i', os.path.join(destination_folder, output_filename), os.path.join(destination_folder, audio_filename)])
 
